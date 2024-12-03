@@ -3,6 +3,8 @@ import ProductGrid from '../components/ProductGrid';
 import { useCart } from '../context/CartContext';
 import { useCategory } from '../context/CategoryContext';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ClipLoader } from 'react-spinners';
 
 interface Product {
   id: number;
@@ -34,8 +36,8 @@ const Home: React.FC = () => {
         setSortedProducts(data); // Initialize sorted products
         setLoading(false);
       })
-      .catch((err) => {
-        console.error('Error fetching products:', err);
+      .catch(() => {
+        toast.error('Failed to load products. Please try again.');
         setLoading(false);
       });
   }, [selectedCategory]);
@@ -79,7 +81,9 @@ const Home: React.FC = () => {
 
       {/* Product Grid */}
       {loading ? (
-        <p className="text-center text-gray-500">Loading products...</p>
+        <div className='flex justify-center items-center min-h-[80vh]'>
+          <ClipLoader color="#059669" size={60}/>
+        </div>
       ) : (
         <ProductGrid products={sortedProducts} onAddToCart={handleAddToCart} />
       )}
