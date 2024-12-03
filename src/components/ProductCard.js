@@ -1,3 +1,0 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-const ProductCard = ({ id, title, price, image, onAddToCart }) => (_jsxs("div", { className: "bg-white border rounded-lg shadow-md hover:shadow-lg transition p-4 flex flex-col", children: [_jsx("img", { src: image, alt: title, className: "w-full h-48 object-cover rounded" }), _jsxs("div", { className: "mt-4 flex-grow", children: [_jsx("h3", { className: "text-lg font-bold text-gray-800", children: title }), _jsxs("p", { className: "text-green-600 mt-2 text-lg", children: ["$", price.toFixed(2)] })] }), _jsx("button", { onClick: () => onAddToCart(id), className: "mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600", children: "Add to Cart" })] }));
-export default ProductCard;
