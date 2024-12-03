@@ -1,0 +1,8 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useCart } from '../context/CartContext';
+const Cart = () => {
+    const { cart, removeFromCart, clearCart } = useCart();
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return (_jsxs("section", { className: "max-w-7xl mx-auto py-16", children: [_jsx("h1", { className: "text-2xl font-bold text-gray-800", children: "Shopping Cart" }), cart.length === 0 ? (_jsx("p", { className: "mt-4 text-gray-600", children: "Your cart is empty." })) : (_jsxs("div", { className: "mt-8 space-y-6", children: [cart.map((item) => (_jsxs("div", { className: "flex justify-between items-center bg-white shadow-md p-4 rounded", children: [_jsxs("div", { className: "flex items-center space-x-4", children: [_jsx("img", { src: item.image, alt: item.title, className: "w-20 h-20 object-cover rounded" }), _jsxs("div", { children: [_jsx("h3", { className: "text-lg font-bold text-gray-800", children: item.title }), _jsxs("p", { className: "text-gray-600", children: ["$", item.price.toFixed(2), " x ", item.quantity] })] })] }), _jsx("button", { onClick: () => removeFromCart(item.id), className: "text-red-500 hover:underline", children: "Remove" })] }, item.id))), _jsxs("div", { className: "flex justify-between items-center mt-8", children: [_jsxs("h3", { className: "text-xl font-bold text-gray-800", children: ["Total: $", totalPrice.toFixed(2)] }), _jsx("button", { onClick: clearCart, className: "bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600", children: "Clear Cart" })] })] }))] }));
+};
+export default Cart;
